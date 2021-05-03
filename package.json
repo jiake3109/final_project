@@ -1,19 +1,19 @@
 {
   "name": "final",
   "version": "1.0.0",
-  "description": "",
+  "description": "my sample node app",
   "main": "form_process.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "start": "node Node.js"
+},
+  "repository": {
+  "type": "git",
+  "url": ""
+},
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mongo": "^0.1.0",
-    "nodemailer": "^6.6.0",
-    "path": "^0.12.7",
-    "smtp": "^0.1.4"
-  }
+  "bugs": {
+  "url": ""
+},
+  "homepage": ""
 }
