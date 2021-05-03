@@ -32,6 +32,14 @@ var mailOptions = {
   text: 'Yo, whassup?'
 };
 
+app.get('/',function(req,res){
+  fs.readFile('homepage.html',function(err,data){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
+});
+
 app.post('/view_artworks', urlencodedParser, function(req, res) {
     response = {
        genre:req.body.genre,
@@ -44,7 +52,8 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
           if (err) {return console.log(err); return;}
           var dbo = db.db("Artworks");
           var collection = dbo.collection("artwork_info");
-          var query = {"classification_titles":{$all:[response.genre]}};
+          var query = {$or:[{"classification_titles":{$all:[response.genre]}},
+                {"material_titles":{$all:[response.medium]}}]};
           collection.find(query).toArray(function(err, items){
               if (err) {
                   console.log("Error: " + err);
@@ -58,20 +67,20 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
                     if (i == 0 || i % 4 == 0) {
                         results += "<div class='row'>";
                     }
-                    console.log("The artwork name is: " + items[i].title + ".<br>" + "The artwork's url is:" + items[i].image_url + ".<br><br>");
+                    var index = Math.floor(Math.random() * items.length);
                     results +=
                       "<div class='col-sm-6 col-md-3'><div class='card h-100'><img src='" +
-                      items[i].image_url + "' class='card-img-top img-thumbnail img-fluid' name='pic" + i +
+                      items[index].image_url + "' class='card-img-top img-thumbnail img-fluid' name='pic" + i +
                       "'/><div class='card-body'><h3 class='card-title font-weight-bold' name='title" + i +
-                      "'/>"+ items[i].title +"</h3></div>" +"<ul class='list-group list-group-flush'>" +
+                      "'/>"+ items[index].title +"</h3></div>" +"<ul class='list-group list-group-flush'>" +
                       "<li class='list-group-item font-weight-bold' name='artist" + i +
-                      "'/>" + items[i].artist +"</li>" +"<li class='list-group-item' name='genre" + i +
-                      "'/>" + response.genre +"</li>" + "<li class='list-group-item' name='medium" + i +
-                      "'/>" + response.medium + "</li>" + "</ul>" + "</div></div>";
+                      "'/>" + items[index].artist +"</li>" +"<li class='list-group-item' name='genre" + i +
+                      "'/>" + "Credit from: " + items[index].credit +"</li>" + "<li class='list-group-item' name='medium" + i +
+                      "'style='font-size:20px;'/>" + items[index].description + "</li>" + "</ul>" + "</div></div>";
                     if ((i + 1) % 4 == 0) {
                       results += "</div>";
                     }
-                    if (i == max_length - 1){
+                    if ((max_length != 12 )&&(i == max_length - 1)){
                       results += "</div>";
                     }
                   }
@@ -117,7 +126,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
    res.write("<div style='text-align:center;'><a href='homepage.html'><img src='artILY_logo.png' alt='Art Gallary'></a></div>");
    res.write("<div style='overflow:hidden;background-color:rgb(129, 206, 230);width:100%;display:flex;justify-content:space-evenly;'>");
    res.write("<a href='homepage.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>About Us</a>");
-   res.write("<a href='gallary.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>Gallary of Art </a>");
+   res.write("<a href='gallery.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>Gallary of Art </a>");
    res.write("<a href='form.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>Send Painting Memories</a></div>");
    MongoClient.connect(url, {useUnifiedTopology: true }, function(err,db){
        if (err) {return console.log(err); return;}
@@ -189,11 +198,4 @@ app.post('/process_post', urlencodedParser, function (req, res) {
    });
 });
 
-app.listen(PORT, () => log('Server is starting on PORT,', 8080));
-
-// const nodemailer = require('nodemailer');
-// const http = require('http');
-// const fs = require('fs');
-// const qs = require('querystring');
-// var query = "";
-// var port = process.env.PORT || 3000;
+app.listen(port, () => log('Server is starting on PORT,', 8080));

@@ -15,6 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 	<style>
+		body{
+		    background-color:#ffffff;
+		    text-align: center;
+		    font-family: "Papyrus";
+		    font-size: 1.5rem;
+		    background-image: url("https://www.artic.edu/iiif/2/5a47a0b8-d21b-b5ae-c8f2-3b99476e6e75/full/843,/0/default.jpg");
+		    margin: 0 auto;
+		}
 		.centered {
 			position: absolute;
 			top: 65%;
@@ -37,9 +45,10 @@
             height:100px;
         }
 
-        .header{
-            text-align:center;
-        }
+				.header{
+				    text-align:center;
+				    background-color: white;
+				}
 
 		.navbar {
 		    overflow: hidden;
@@ -64,24 +73,24 @@
 		    color: black;
 		}
 
-        .footer{
-            background-color:rgb(129, 206, 230);
-            color:#f2f2f2;
-            height: 325px;
-        }
+		.footer{
+		    background-color:rgb(129, 206, 230);
+		    color:#f2f2f2;
+		    height: 325px;
+		}
 
-        .footer p{
-            margin-left: 30px;
-            font-size:1rem;
-            color:#f2f2f2;
-        }
+		.footer p{
+		    margin-left: 30px;
+		    font-size:1rem;
+		    color:#f2f2f2;
+		}
 
-        .footer a{
-            margin-left: 30px;
-            font-size:1rem;
-            text-decoration: none;
-            color: #f2f2f2;
-        }
+		.footer a{
+		    margin-left: 30px;
+		    font-size:1rem;
+		    text-decoration: none;
+		    color: #f2f2f2;
+		}
         /* header footer nav ends */
 
         h1{
@@ -112,11 +121,47 @@
         }
 
 	</style>
+
+	<script language="javascript">
+		function displayArtworks() {
+			alert("in function");
+            var display = document.getElementById("artworks");
+            var results = "";
+
+			for (i = 0; i < 100; i++) {
+				if (i == 0 || i % 4 == 0) {
+				  	results += "<div class='row'>";
+				}
+
+				results +=
+					"<div class='col-sm-6 col-md-3'><div class='card h-100'><img src='" +
+					"oyster.jpg" + "' class='card-img-top img-thumbnail img-fluid' name='pic" + i +
+					"'/><div class='card-body'><h3 class='card-title font-weight-bold' name='title" + i +
+					"'/>[title here]</h3></div>" +
+
+                    "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item font-weight-bold' name='artist" + i +
+					    "'/>[artist name here]</li>" +
+                        "<li class='list-group-item' name='genre" + i +
+					    "'/>[genre here]</li>" +
+                        "<li class='list-group-item' name='medium" + i +
+					    "'/>[medium here]</li>" +
+                    "</ul>" +
+
+                    "</div></div>";
+
+				if ((i + 1) % 4 == 0) {
+					results += "</div>";
+				}
+			}
+			display.innerHTML = results;
+            // document.getElementById("artworks").innerHTML="hi there";
+		}
+
+	</script>
 </head>
 
-
 <body>
-
     <div class="header">
         <a href="homepage.html"><img src="artILY_logo.png" alt="Art Gallary" class="main-logo"></a>
     </div>
@@ -127,10 +172,12 @@
       <a href="form.html">Send Painting Memories</a>
     </div>
 
-    <br><br>
+    <br><br><br><br><br><br><br>
 
     <h1>Gallery</h1>
-		<br>
+
+    <br>
+
 		<div class="menu">
 		        <form action="/view_artworks" method="POST">
 		    		<select name = "genre" id = "genre">
@@ -151,8 +198,15 @@
 		    		<input type= "submit" value = "View">
 		    	</form>
 		    </div>
-		<br><br>
+    <br><br>
 
+	<!-- Book Cards from js-->
+	<div id='artworks' class="container">
+        &nbsp;
+
+
+	</div>
+	<br><br><br><br><br><br><br><br>
 
 </body>
 <script>
@@ -203,4 +257,14 @@
 				}
 		}
 </script>
+<footer class="footer">
+    <br>
+    <p><b>ArtILY</b></p>
+    <p>Harvard Square</p>
+    <p>3 Brattle Street</P>
+    <p>Cambridge, MA 02138</p>
+    <a href="tel:8573218430">(857)-321-8430</a><br>
+    <a href= "mailto:info@theslice.com">info@theartily.com</a>
+</footer>
+
 </html>

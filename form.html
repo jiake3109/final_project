@@ -5,16 +5,20 @@
 body{
     background-color:#ffffff;
     text-align: center;
+    font-family: "Papyrus";
+    font-size: 1.5rem;
+    background-image: url("https://www.artic.edu/iiif/2/5a47a0b8-d21b-b5ae-c8f2-3b99476e6e75/full/843,/0/default.jpg");
+    margin: 0 auto;
 }
 
 .main-logo{
     float: center;
-    width:150px;
-    height:50px;
+    height:100px;
 }
 
 .header{
     text-align:center;
+    background-color: white;
 }
 
 .navbar {
@@ -26,12 +30,12 @@ body{
 }
 
 .navbar a {
-    float: left;
-    display: block;
+    display: inline-block;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    width: 500px;
 }
 
 .navbar a:hover {
@@ -39,52 +43,52 @@ body{
     color: black;
 }
 
-#submit{
-    background-color: #e7e7e7;
-    width:80px;
-    height:50px;
-}
-
 form{
     display: inline-block;
     border: 2px solid black;
     border-radius: 25px;
     padding: 15px;
+    background-color:#ffffff;
+    font-size: 18px;
+    font-family: "Gill Sans", sans-serif;
 }
+
 .show-sender, .personalize-painting, .auto-generate-painting, .preview, .submit{
-    display:none;
+    display: none;
 }
 
 .footer{
     background-color:rgb(129, 206, 230);
     color:#f2f2f2;
-    height: 260px;
+    height: 325px;
 }
 
 .footer p{
     margin-left: 30px;
-/*     padding: 5px; */
-    font-size: 13px;
-    color:#000000;
+    font-size:1rem;
+    color:#f2f2f2;
 }
 
 .footer a{
     margin-left: 30px;
-/*     padding: 5px; */
-    font-size: 13px;
+    font-size:1rem;
     text-decoration: none;
-    color: #000000;
+    color: #f2f2f2;
+}
+
+h1{
+    font-size: 30px;
+    font-family: "Papyrus";
 }
 </style>
 </head>
 <body>
     <div class="header">
-        <a href="homepage.html"><img src="afternoontea.jpg" alt="Art Gallary" class="main-logo"></a>
+        <a href="homepage.html"><img src="artILY_logo.png" alt="Art Gallary" class="main-logo"></a>
     </div>
-
     <div class="navbar">
         <a href="homepage.html">About Us</a>
-        <a href="gallary.html">Gallary of Art (Genre, Medium, etc)</a>
+        <a href="gallery.html">Gallary of Art (Genre, Medium, etc)</a>
         <a href="form.html">Send Painting Memories (Form)</a>
     </div>
 
