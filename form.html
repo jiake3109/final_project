@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    background-color:#ffffff;
+    text-align: center;
+}
+
+.main-logo{
+    float: center;
+    width:150px;
+    height:50px;
+}
+
+.header{
+    text-align:center;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(129, 206, 230);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background: #f2f2f2;
+    color: black;
+}
+
+#submit{
+    background-color: #e7e7e7;
+    width:80px;
+    height:50px;
+}
+
+form{
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 15px;
+}
+.show-sender, .personalize-painting, .auto-generate-painting, .preview, .submit{
+    display:none;
+}
+
+.footer{
+    background-color:rgb(129, 206, 230);
+    color:#f2f2f2;
+    height: 260px;
+}
+
+.footer p{
+    margin-left: 30px;
+/*     padding: 5px; */
+    font-size: 13px;
+    color:#000000;
+}
+
+.footer a{
+    margin-left: 30px;
+/*     padding: 5px; */
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+    <div class="header">
+        <a href="homepage.html"><img src="afternoontea.jpg" alt="Art Gallary" class="main-logo"></a>
+    </div>
+
+    <div class="navbar">
+        <a href="homepage.html">About Us</a>
+        <a href="gallary.html">Gallary of Art (Genre, Medium, etc)</a>
+        <a href="form.html">Send Painting Memories (Form)</a>
+    </div>
+
+    <br><br><br><br>
+
+    <form action = "/process_post" method ='POST' onsubmit="return validateForm()">
+        <h1>Send a meaningful art piece to your loved one!</h1>
+        <b><label for="personalized-generator">Select whether you want to personalize or auto-generate an art message</label></b><br>
+        <input type="radio" id="personalize" name="pg_option" value="personalize" onclick="personal()">
+        <label for="stock_ticker">Personalize</label><br>
+        <input type="radio" id="generator" name="pg_option" value="generator" onclick="generate()">
+        <label for="company_name">Auto-Generate</label><br>
+        <br>
+
+        <b><label for="sender">Select whether you want to stay anonymous:</label></b><br>
+        <input type="radio" id="anonymous" name="anon" value="anonymous" onclick="no_sender_info()">
+        <label for="stock_ticker">Yes</label><br>
+        <input type="radio" id="non-anonymous" name="anon" value="non-anonymous" onclick="sender_info()">
+        <label for="company_name">No</label><br><br>
+
+        <div class="show-sender">
+            <b><label for="sender_name">Your's Name:</label></b>
+            <input type="text" id="sender_name" name="sender_name"><br><br>
+        </div>
+
+        <b><label for="recipient-name">Recipient's Name:</label></b>
+        <input type="text" id="recipient-name" name="recipient_name"><br><br>
+        <b><label for="email">Recipient's Email:</label></b>
+        <input type="email" id="email" name="email"><br><br>
+        <b><label for="message">Send a personalized message:</label><br></b>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <div class="personalize-painting">
+            <label for="personalize_painting_text">Send this special painting:</label>
+            <input type="text" id="personalize_painting_text" name="personalize_painting_text"><br><br>
+        </div>
+
+        <div class="auto-generate-painting">
+            <label for="type">Select Genre:</label><br>
+            <select name="genre" id="genre">
+                <option value="painting">Painting</option>
+                <option value="sculpture">Sculpture</option>
+                <option value="ceramics">Ceramics</option>
+                <option value="weaving">Weaving</option>
+            </select>
+            <br><br>
+            <label for="type">Select Medium:</label><br>
+            <select name="medium" id="medium">
+                <option value="oil paint">Oil paint</option>
+                <option value="papyrus (fiber product)">Papyrus</option>
+                <option value="paper (fiber product)">Paper</option>
+                <option value="organic material">Organic material</option>
+            </select>
+            <br><br>
+        </div>
+        <br>
+        <div class="submit"></div>
+            <input type="submit" id = "submit" value="Submit">
+        </div>
+    </form>
+    <br><br><br><br><br><br>
+</body>
+<footer class="footer">
+    <br>
+    <p><b>The Slice</b></p>
+    <p>Harvard Square</p>
+    <p>3 Brattle Street</P>
+    <p>Cambridge, MA 02138</p><br>
+    <a href="tel:8573218430">(857)-321-8430</a><br>
+    <a href= "mailto:info@theslice.com">info@theslice.com</a>
+ </footer>
+ <script>
+     var genre = document.getElementById("genre");
+     var med = document.getElementById("medium");
+     genre.onchange = function(){
+         switch(genre.options[genre.selectedIndex].value){
+            case "painting":
+                med.options[0].value = "oil paint";
+                med.options[1].value = "papyrus (fiber product)";
+                med.options[2].value = "paper (fiber product)";
+                med.options[3].value = "organic material";
+                med.options[0].innerHTML = "Oil paint";
+                med.options[1].innerHTML = "Papyrus";
+                med.options[2].innerHTML = "Paper";
+                med.options[3].innerHTML = "Organic material";
+                break;
+            case "sculpture":
+                med.options[0].value = "rock";
+                med.options[1].value = "terracotta";
+                med.options[2].value = "inorganic material";
+                med.options[3].value = "marble";
+                med.options[0].innerHTML = "Rock";
+                med.options[1].innerHTML = "Terracotta";
+                med.options[2].innerHTML = "Inorganic material";
+                med.options[3].innerHTML = "Marble";
+                break;
+            case "ceramics":
+                med.options[0].value = "ceramic";
+                med.options[1].value = "terracotta";
+                med.options[2].value = "inorganic material";
+                med.options[3].value = "earthenware";
+                med.options[0].innerHTML = "Ceramic";
+                med.options[1].innerHTML = "Terracotta";
+                med.options[2].innerHTML = "Inorganic material";
+                med.options[3].innerHTML = "Earthenware";
+                break;
+            case "weaving":
+                med.options[0].value = "silk (fiber)";
+                med.options[1].value = "wool (textile)";
+                med.options[2].value = "linen (material)";
+                med.options[3].value = "satin";
+                med.options[0].innerHTML = "Silk";
+                med.options[1].innerHTML = "Wool";
+                med.options[2].innerHTML = "Linen";
+                med.options[3].innerHTML = "Satin";
+                break;
+         }
+     }
+     function personal(){
+         document.getElementsByClassName("personalize-painting")[0].style.display = 'block';
+         document.getElementsByClassName("auto-generate-painting")[0].style.display = 'none';
+         document.getElementsByClassName("preview")[0].style.display = 'block';
+         document.getElementsByClassName("submit")[0].style.display = 'block';
+     }
+     function generate(){
+         document.getElementsByClassName("personalize-painting")[0].style.display = 'none';
+         document.getElementsByClassName("auto-generate-painting")[0].style.display = 'block';
+         document.getElementsByClassName("preview")[0].style.display = 'block';
+         document.getElementsByClassName("submit")[0].style.display = 'block';
+     }
+     function sender_info(){
+         document.getElementsByClassName("show-sender")[0].style.display = 'block';
+     }
+     function no_sender_info(){
+         document.getElementsByClassName("show-sender")[0].style.display = 'none';
+     }
+     function validateForm(){
+         if(document.getElementById('personalize').checked) {
+             if(document.getElementById('non-anonymous').checked){
+                 if(document.getElementById('sender_name').value == ""){
+                     alert("Please enter information into the textbox");
+                     return false;
+                 }
+                 else{
+                     if(document.getElementById('email').value == ""){
+                         alert("Please enter receipt's email");
+                         return false;
+                     }
+                     else{
+                         if(document.getElementById('personalize_painting_text').value == ""){
+                             alert("Please enter name of painting to send");
+                             return false;
+                         }
+                         else{
+                             return true;
+                         }
+                     }
+                 }
+             }
+             else{
+                 if(document.getElementById('email').value == ""){
+                         alert("Please enter receipt's email");
+                         return false;
+                 }
+                 else{
+                         if(document.getElementById('personalize_painting_text').value == ""){
+                             alert("Please enter name of painting to send");
+                             return false;
+                         }
+                         else{
+                             return true;
+                         }
+                 }
+             }
+         }
+         if(document.getElementById('generator').checked) {
+             if(document.getElementById('non-anonymous').checked){
+                 if(document.getElementById('sender_name').value == ""){
+                     alert("Please enter information into the textbox");
+                     return false;
+                 }
+                 else{
+                     if(document.getElementById('email').value == ""){
+                         alert("Please enter receipt's email");
+                         return false;
+                     }
+                     else{
+                         return true;
+                     }
+                 }
+             }
+             else{
+                 if(document.getElementById('email').value == ""){
+                         alert("Please enter receipt's email");
+                         return false;
+                 }
+                 else{
+                     return true;
+                 }
+             }
+         }
+     }
+ </script>
+ </html>
