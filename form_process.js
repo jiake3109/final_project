@@ -78,7 +78,7 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
                       "'/>" + "Credit from: " + items[index].credit +"</li>" + "<li class='list-group-item' name='medium" + i +
                       "'style='font-size:20px;'/>" + items[index].description + "</li>" + "</ul>" + "</div></div><br><br>";
                     if ((i + 1) % 4 == 0) {
-                      results += "</div>";
+                      results += "</div><br><br>";
                     }
                     if ((max_length != 12 )&&(i == max_length - 1)){
                       results += "</div>";
