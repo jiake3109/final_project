@@ -76,7 +76,7 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
                       "<li class='list-group-item font-weight-bold' name='artist" + i +
                       "'/>" + items[index].artist +"</li>" +"<li class='list-group-item' name='genre" + i +
                       "'/>" + "Credit from: " + items[index].credit +"</li>" + "<li class='list-group-item' name='medium" + i +
-                      "'style='font-size:20px;'/>" + items[index].description + "</li>" + "</ul>" + "</div></div>";
+                      "'style='font-size:20px;'/>" + items[index].description + "</li>" + "</ul>" + "</div></div><br><br>";
                     if ((i + 1) % 4 == 0) {
                       results += "</div>";
                     }
@@ -86,13 +86,13 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
                   }
                   results += "</div>";
                   res.write(results);
-                  res.write("<footer style='background-color:rgb(129, 206, 230);olor:#f2f2f2;height: 325px;'><br>");
-                  res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'><b>ArtILY</b></p>");
-                  res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Harvard Square</p>");
-                  res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>3 Brattle Street</p>");
-                  res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Cambridge, MA 02138</p>");
-                  res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;' href='tel:8573218430'>(857)-321-8430</a><br>");
-                  res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;'href= 'mailto:info@theslice.com'>info@theartily.com</a>");
+                  res.write("<footer><br>");
+                  res.write("<p><b>ArtILY</b></p>");
+                  res.write("<p>Harvard Square</p>");
+                  res.write("<p>3 Brattle Street</p>");
+                  res.write("<p>Cambridge, MA 02138</p>");
+                  res.write("<a href='tel:8573218430'>(857)-321-8430</a><br>");
+                  res.write("<a href= 'mailto:info@theslice.com'>info@theartily.com</a>");
                   res.write("</footer>");
                   db.close();
                   console.log(response);
@@ -122,13 +122,10 @@ app.post('/process_post', urlencodedParser, function (req, res) {
      }
      transporter.close();
    });
-   res.writeHead(200, {'Content-Type': 'text/html'});
-   res.write("<div style='text-align:center;'><a href='homepage.html'><img src='artILY_logo.png' alt='Art Gallary'></a></div>");
-   res.write("<div style='overflow:hidden;background-color:rgb(129, 206, 230);width:100%;display:flex;justify-content:space-evenly;'>");
-   res.write("<a href='homepage.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>About Us</a>");
-   res.write("<a href='gallery.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>Gallary of Art </a>");
-   res.write("<a href='form.html'style='display: inline-block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;'>Send Painting Memories</a></div>");
-   MongoClient.connect(url, {useUnifiedTopology: true }, function(err,db){
+   fs.readFile('form_template.html',function(err,data){
+     res.writeHead(200, {'Content-Type': 'text/html'});
+     res.write(data);
+     MongoClient.connect(url, {useUnifiedTopology: true }, function(err,db){
        if (err) {return console.log(err); return;}
        var dbo = db.db("Artworks");
        var collection = dbo.collection("artwork_info");
@@ -154,13 +151,13 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("<footer style='background-color:rgb(129, 206, 230);olor:#f2f2f2;height: 325px;'><br>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'><b>ArtILY</b></p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Harvard Square</p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>3 Brattle Street</p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Cambridge, MA 02138</p>");
-               res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;' href='tel:8573218430'>(857)-321-8430</a><br>");
-               res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;'href= 'mailto:info@theslice.com'>info@theartily.com</a>");
+               res.write("<footer><br>");
+               res.write("<p><b>ArtILY</b></p>");
+               res.write("<p>Harvard Square</p>");
+               res.write("<p>3 Brattle Street</p>");
+               res.write("<p>Cambridge, MA 02138</p>");
+               res.write("<a href='tel:8573218430'>(857)-321-8430</a><br>");
+               res.write("<a href= 'mailto:info@theslice.com'>info@theartily.com</a>");
                res.write("</footer>");
                res.end();
             });
@@ -184,17 +181,18 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("<footer style='background-color:rgb(129, 206, 230);olor:#f2f2f2;height: 325px;'><br>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'><b>ArtILY</b></p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Harvard Square</p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>3 Brattle Street</p>");
-               res.write("<p style='margin-left: 30px;font-size:1rem;color:#f2f2f2;'>Cambridge, MA 02138</p>");
-               res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;' href='tel:8573218430'>(857)-321-8430</a><br>");
-               res.write("<a style='margin-left: 30px;font-size:1rem;text-decoration: none;color: #f2f2f2;'href= 'mailto:info@theslice.com'>info@theartily.com</a>");
+               res.write("<footer><br>");
+               res.write("<p><b>ArtILY</b></p>");
+               res.write("<p>Harvard Square</p>");
+               res.write("<p>3 Brattle Street</p>");
+               res.write("<p>Cambridge, MA 02138</p>");
+               res.write("<a href='tel:8573218430'>(857)-321-8430</a><br>");
+               res.write("<a href= 'mailto:info@theslice.com'>info@theartily.com</a>");
                res.write("</footer>");
                res.end();
             });
        }
+     });
    });
 });
 
