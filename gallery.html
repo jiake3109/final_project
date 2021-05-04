@@ -213,47 +213,47 @@
 		var genre = document.getElementById("genre");
 		var med = document.getElementById("medium");
 		genre.onchange = function(){
-				switch(genre.options[genre.selectedIndex].value){
-					 case "painting":
-							 med.options[0].value = "oil paint";
-							 med.options[1].value = "papyrus (fiber product)";
-							 med.options[2].value = "paper (fiber product)";
-							 med.options[3].value = "organic material";
-							 med.options[0].innerHTML = "Oil paint";
-							 med.options[1].innerHTML = "Papyrus";
-							 med.options[2].innerHTML = "Paper";
-							 med.options[3].innerHTML = "Organic material";
-							 break;
-					 case "sculpture":
-							 med.options[0].value = "rock";
-							 med.options[1].value = "terracotta";
-							 med.options[2].value = "inorganic material";
-							 med.options[3].value = "marble";
-							 med.options[0].innerHTML = "Rock";
-							 med.options[1].innerHTML = "Terracotta";
-							 med.options[2].innerHTML = "Inorganic material";
-							 med.options[3].innerHTML = "Marble";
-							 break;
-					 case "ceramics":
-							 med.options[0].value = "ceramic";
-							 med.options[1].value = "terracotta";
-							 med.options[2].value = "inorganic material";
-							 med.options[3].value = "earthenware";
-							 med.options[0].innerHTML = "Ceramic";
-							 med.options[1].innerHTML = "Terracotta";
-							 med.options[2].innerHTML = "Inorganic material";
-							 med.options[3].innerHTML = "Earthenware";
-							 break;
-					 case "weaving":
-							 med.options[0].value = "silk (fiber)";
-							 med.options[1].value = "wool (textile)";
-							 med.options[2].value = "linen (material)";
-							 med.options[3].value = "satin";
-							 med.options[0].innerHTML = "Silk";
-							 med.options[1].innerHTML = "Wool";
-							 med.options[2].innerHTML = "Linen";
-							 med.options[3].innerHTML = "Satin";
-							 break;
+			switch(genre.options[genre.selectedIndex].value){
+				 case "painting":
+						 med.options[1].value = "oil paint";
+						 med.options[2].value = "papyrus (fiber product)";
+						 med.options[3].value = "paper (fiber product)";
+						 med.options[4].value = "organic material";
+						 med.options[1].innerHTML = "Oil paint";
+						 med.options[2].innerHTML = "Papyrus";
+						 med.options[3].innerHTML = "Paper";
+						 med.options[4].innerHTML = "Organic material";
+						 break;
+				 case "sculpture":
+						 med.options[1].value = "rock";
+						 med.options[2].value = "terracotta";
+						 med.options[3].value = "inorganic material";
+						 med.options[4].value = "marble";
+						 med.options[1].innerHTML = "Rock";
+						 med.options[2].innerHTML = "Terracotta";
+						 med.options[3].innerHTML = "Inorganic material";
+						 med.options[4].innerHTML = "Marble";
+						 break;
+				 case "ceramics":
+						 med.options[1].value = "ceramic";
+						 med.options[2].value = "terracotta";
+						 med.options[3].value = "inorganic material";
+						 med.options[4].value = "earthenware";
+						 med.options[1].innerHTML = "Ceramic";
+						 med.options[2].innerHTML = "Terracotta";
+						 med.options[3].innerHTML = "Inorganic material";
+						 med.options[4].innerHTML = "Earthenware";
+						 break;
+				 case "weaving":
+						 med.options[1].value = "silk (fiber)";
+						 med.options[2].value = "wool (textile)";
+						 med.options[3].value = "linen (material)";
+						 med.options[4].value = "satin";
+						 med.options[1].innerHTML = "Silk";
+						 med.options[2].innerHTML = "Wool";
+						 med.options[3].innerHTML = "Linen";
+						 med.options[4].innerHTML = "Satin";
+						 break;
 				}
 		}
 </script>
