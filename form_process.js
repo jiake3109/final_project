@@ -151,6 +151,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
+               res.write("<br><br>");
                res.write("</body><footer class='footer'><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
@@ -181,6 +182,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
+               res.write("<br><br>");
                res.write("</body><footer class='footer'><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
