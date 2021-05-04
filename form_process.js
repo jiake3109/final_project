@@ -151,14 +151,14 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("<footer><br>");
+               res.write("</body><footer><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
                res.write("<p>3 Brattle Street</p>");
                res.write("<p>Cambridge, MA 02138</p>");
                res.write("<a href='tel:8573218430'>(857)-321-8430</a><br>");
                res.write("<a href= 'mailto:info@theslice.com'>info@theartily.com</a>");
-               res.write("</footer>");
+               res.write("</footer></html>");
                res.end();
             });
        }else{
@@ -181,14 +181,14 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("<footer><br>");
+               res.write("</body><footer><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
                res.write("<p>3 Brattle Street</p>");
                res.write("<p>Cambridge, MA 02138</p>");
                res.write("<a href='tel:8573218430'>(857)-321-8430</a><br>");
                res.write("<a href= 'mailto:info@theslice.com'>info@theartily.com</a>");
-               res.write("</footer>");
+               res.write("</footer></html>");
                res.end();
             });
        }
