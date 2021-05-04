@@ -86,7 +86,7 @@ app.post('/view_artworks', urlencodedParser, function(req, res) {
                   }
                   results += "</div>";
                   res.write(results);
-                  res.write("<footer><br>");
+                  res.write("<footer class='footer'><br>");
                   res.write("<p><b>ArtILY</b></p>");
                   res.write("<p>Harvard Square</p>");
                   res.write("<p>3 Brattle Street</p>");
@@ -151,7 +151,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("</body><footer><br>");
+               res.write("</body><footer class='footer'><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
                res.write("<p>3 Brattle Street</p>");
@@ -181,7 +181,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                }
                db.close();
                console.log(response);
-               res.write("</body><footer><br>");
+               res.write("</body><footer class='footer'><br>");
                res.write("<p><b>ArtILY</b></p>");
                res.write("<p>Harvard Square</p>");
                res.write("<p>3 Brattle Street</p>");
