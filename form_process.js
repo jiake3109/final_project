@@ -145,9 +145,9 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                else
                {
                  var index = Math.floor(Math.random() * items.length);
-                 console.log("The artwork name is: " + items[index].title + ".<br>" + "The artwork's url is:" + items[index].image_url + ".<br><br>");
+                 console.log("<div class='result'>The artwork name is: " + items[index].title + ".<br>" + "The artwork's url is:" + items[index].image_url + ".<br><br>");
                  res.write("<br><br><div style='text-align:center;'><img src='" + items[index].image_url + "' style='height:400px; width:300px;'></div><br>");
-                 res.write("<div style='text-align:center;'>The artwork: <b>" + items[index].title + "</b> has been shared to <b>" + response['email'] + "</b><br><br></div>");
+                 res.write("<div style='text-align:center;'>The artwork: <b>" + items[index].title + "</b> has been shared to <b>" + response['email'] + "</b><br><br></div></div>");
                }
                db.close();
                console.log(response);
