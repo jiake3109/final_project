@@ -171,7 +171,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
                {
                  console.log("we found " + items.length + " items.");
                  if (items.length == 0){
-                     res.write("<br><br><div style='text-align:center;'><h3>" + response.artwork_title +" is not found in our database. Please return to our form and enter the correct artwork title.</h3></div><br>");
+                     res.write("<br><br><div style='text-align:center;'><h3>" + response.artwork_title +" is not found in our database. Please return to our form and enter the correct artwork title.</h3></div><br><br><br><br><br>");
                  }else{
                      var index = Math.floor(Math.random() * items.length);
                      console.log("The artwork name is: " + items[index].title + ".<br>" + "The artwork's url is:" + items[index].image_url + ".<br><br>");
